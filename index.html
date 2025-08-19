@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koderer Autos | Motos - Concesionario Oficial</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #FFA500; /* Naranja dorado */
+            --secondary-color: #121212; /* Negro profundo */
+            --light-color: #FFFFFF; /* Blanco */
+            --dark-color: #1E1E1E; /* Gris oscuro */
+            --border-color: #333333;
+            --text-light: #FFFFFF;
+            --text-dark: #121212;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--secondary-color);
+            color: var(--light-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light-color);
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+            filter: brightness(100%);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--light-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        nav a:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .contact-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-btn:hover {
+            background-color: #FF8C00;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://placehold.co/1600x600/FFA500/FFFFFF?text=Koderer+Autos') no-repeat center center/cover;
+            color: var(--light-color);
+            text-align: center;
+            padding: 8rem 1rem 6rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            color: var(--light-color);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.8rem 2.5rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 0.5rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--light-color);
+            color: var(--light-color);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+            background-color: var(--light-color);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--secondary-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .about-text h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .contact-info {
+            background-color: #F8FAFC;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-top: 0.3rem;
+        }
+
+        .contact-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Vehicles Section */
+        .vehicles {
+            padding: 5rem 0;
+            background-color: #F8FAFC;
+        }
+
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            background-color: white;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.6rem 1.8rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .vehicles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .vehicle-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            border: 1px solid var(--border-color);
+        }
+
+        .vehicle-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .tag.oportunidad {
+            background-color: var(--primary-color);
+        }
+
+        .tag.nuevo {
+            background-color: var(--secondary-color);
+        }
+
+        .vehicle-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background-color: #E2E8F0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-color);
+            font-size: 1.5rem;
+        }
+
+        .vehicle-info {
+            padding: 1.5rem;
+        }
+
+        .vehicle-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .vehicle-model {
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .vehicle-year {
+            display: inline-block;
+            background-color: #F1F5F9;
+            color: var(--dark-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .vehicle-price {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+        }
+
+        .vehicle-price-financed {
+            font-size: 1.3rem;
+            color: var(--dark-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .vehicle-km {
+            display: inline-block;
+            background-color: #F1F5F9;
+            color: var(--dark-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .vehicle-description {
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+
+        .vehicle-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-details {
+            flex: 1;
+            text-align: center;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 5rem 0;
+            background-color: var(--light-color);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background-color: #F8FAFC;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            position: relative;
+            border: 1px solid var(--border-color);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 5rem;
+            color: rgba(255, 165, 0, 0.1);
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-text {
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            color: var(--dark-color);
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+        }
+
+        .author-info h4 {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+        }
+
+        .author-info p {
+            color: var(--dark-color);
+            font-size: 0.9rem;
+        }
+
+        .rating {
+            color: var(--primary-color);
+            margin-top: 0.3rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--light-color);
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: #E2E8F0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94A3B8;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .btn {
+                display: block;
+                margin: 0.5rem auto;
+                width: 80%;
+            }
+            
+            nav ul {
+                gap: 0.5rem;
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="https://placehold.co/200x50/121212/FFFFFF?text=KODERER+AUTOS" alt="Koderer Autos Logo">
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Inicio</a></li>
+                        <li><a href="#about">Sobre Nosotros</a></li>
+                        <li><a href="#vehicles">Vehículos</a></li>
+                        <li><a href="#testimonials">Testimonios</a></li>
+                    </ul>
+                </nav>
+                <a href="https://wa.link/hnc24c" class="contact-btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>¡Encontrá tu auto ideal con KODERER!</h1>
+            <p>Nuevos y usados | Financiación disponible | Motos también disponibles</p>
+            <div>
+                <a href="#vehicles" class="btn">Ver Vehículos</a>
+                <a href="https://wa.link/hnc24c" class="btn btn-outline" target="_blank">Contactar por WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">Sobre KODERER</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>¡Encontrá tu auto ideal con KODERER!</h3>
+                    <p>Ofrecemos vehículos nuevos y usados con las mejores condiciones del mercado. Nuestra prioridad es la satisfacción del cliente, la transparencia y un excelente servicio postventa.</p>
+                    <p>Con años de experiencia en el rubro automotor, conocemos lo que nuestros clientes buscan: calidad, precio justo y confianza. Por eso cada vehículo pasa por una revisión técnica rigurosa antes de salir a la venta.</p>
+                    <p>¡Financiación disponible! Trabajamos con múltiples opciones para que puedas llevarte tu vehículo soñado sin complicaciones.</p>
+                </div>
+                <div class="contact-info">
+                    <h3>Visitános</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Dirección</h4>
+                            <p>Colectora Norte Avenida 8 de Septiembre, N3310 Salto Encantado, Misiones, Aristóbulo del Valle, Misiones, Argentina</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-instagram"></i>
+                        <div>
+                            <h4>Instagram</h4>
+                            <p>@tuautokoderer</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <h4>WhatsApp</h4>
+                            <p>Chat directo por WhatsApp</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://wa.link/hnc24c" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://instagram.com/tuautokoderer" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vehicles Section -->
+    <section class="vehicles" id="vehicles">
+        <div class="container">
+            <h2 class="section-title">Nuestros Vehículos</h2>
+            <div class="filter-bar">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="oportunidad">Oportunidades</button>
+                <button class="filter-btn" data-filter="nuevo">Nuevos Ingresos</button>
+            </div>
+            <div class="vehicles-grid">
+                <div class="vehicle-card" data-type="oportunidad">
+                    <div class="tag oportunidad">Oportunidad</div>
+                    <div class="vehicle-img">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="vehicle-info">
+                        <h3 class="vehicle-title">Ford Fiesta SE Plus</h3>
+                        <div class="vehicle-model">Sedán - 5 puertas</div>
+                        <div class="vehicle-year">2018</div>
+                        <div class="vehicle-price">$21.000.000</div>
+                        <div class="vehicle-price-financed">Precio financiado: $20.000.000</div>
+                        <div class="vehicle-actions">
+                            <a href="https://wa.link/hnc24c" class="btn btn-details" target="_blank">Consultar por WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="vehicle-card" data-type="oportunidad">
+                    <div class="tag oportunidad">Oportunidad</div>
+                    <div class="vehicle-img">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="vehicle-info">
+                        <h3 class="vehicle-title">Fiat Siena EL</h3>
+                        <div class="vehicle-model">Sedán - 4 puertas</div>
+                        <div class="vehicle-year">2016</div>
+                        <div class="vehicle-price">$13.500.000</div>
+                        <div class="vehicle-actions">
+                            <a href="https://wa.link/hnc24c" class="btn btn-details" target="_blank">Consultar por WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="vehicle-card" data-type="oportunidad">
+                    <div class="tag oportunidad">Oportunidad</div>
+                    <div class="vehicle-img">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <div class="vehicle-info">
+                        <h3 class="vehicle-title">Citroën Berlingo</h3>
+                        <div class="vehicle-model">Furgón Endurance</div>
+                        <div class="vehicle-year">2022</div>
+                        <div class="vehicle-price">$22.000.000</div>
+                        <div class="vehicle-price-financed">Precio financiado: $21.500.000</div>
+                        <div class="vehicle-actions">
+                            <a href="https://wa.link/hnc24c" class="btn btn-details" target="_blank">Consultar por WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="vehicle-card" data-type="nuevo">
+                    <div class="tag nuevo">Nuevo Ingreso</div>
+                    <div class="vehicle-img">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="vehicle-info">
+                        <h3 class="vehicle-title">Volkswagen Golf GL</h3>
+                        <div class="vehicle-model">Hatchback - 3 puertas</div>
+                        <div class="vehicle-year">1996</div>
+                        <div class="vehicle-description">Único en su estado - Clásico impecable</div>
+                        <div class="vehicle-actions">
+                            <a href="https://wa.link/hnc24c" class="btn btn-details" target="_blank">Consultar por WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="vehicle-card" data-type="oportunidad">
+                    <div class="tag oportunidad">Oportunidad</div>
+                    <div class="vehicle-img">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="vehicle-info">
+                        <h3 class="vehicle-title">Peugeot 408</h3>
+                        <div class="vehicle-model">2.0 NAFTA</div>
+                        <div class="vehicle-year">2014</div>
+                        <div class="vehicle-km">100.000 KM</div>
+                        <div class="vehicle-actions">
+                            <a href="https://wa.link/hnc24c" class="btn btn-details" target="_blank">Consultar por WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Compré un Ford Fiesta a través de WhatsApp y la experiencia fue increíble. El auto estaba tal como lo describieron, el precio era justo y el trato fue excelente. ¡Altamente recomendado!</p>
+                    <div class="testimonial-author">
+                        <div class="author-img" style="background-color: var(--primary-color); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">JR</div>
+                        <div class="author-info">
+                            <h4>Juan Rodríguez</h4>
+                            <p>Compró Ford Fiesta 2018</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Vendí mi Fiat Siena y fue muy rápido. Me dieron un precio justo y todo el proceso fue transparente. Ahora estoy mirando un Citroën Berlingo con ellos para mi negocio.</p>
+                    <div class="testimonial-author">
+                        <div class="author-img" style="background-color: var(--primary-color); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">ML</div>
+                        <div class="author-info">
+                            <h4>María López</h4>
+                            <p>Vendió y está comprando otro</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">El Volkswagen Golf 1996 que tienen es una joya. Como coleccionista de autos clásicos, puedo decir que está en condiciones excepcionales. Excelente atención y conocimiento del producto.</p>
+                    <div class="testimonial-author">
+                        <div class="author-img" style="background-color: var(--primary-color); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">AC</div>
+                        <div class="author-info">
+                            <h4>Andrés Cárdenas</h4>
+                            <p>Coleccionista de autos clásicos</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>KODERER AUTOS | Motos</h3>
+                    <p>La mejor selección de autos y motos usados con garantía, precios justos y un proceso de compra transparente. Calidad y confianza desde Misiones.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Autos</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-car"></i> Sedanes</a></li>
+                        <li><a href="#"><i class="fas fa-truck"></i> Furgones</a></li>
+                        <li><a href="#"><i class="fas fa-motorcycle"></i> Motos</a></li>
+                        <li><a href="#"><i class="fas fa-hammer"></i> Autos clásicos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Servicios</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-search"></i> Búsqueda Personalizada</a></li>
+                        <li><a href="#"><i class="fas fa-handshake"></i> Vende tu Auto</a></li>
+                        <li><a href="#"><i class="fas fa-credit-card"></i> Financiamiento</a></li>
+                        <li><a href="#"><i class="fas fa-comments"></i> Atención por WhatsApp</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li><a href="https://wa.link/hnc24c" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                        <li><a href="https://instagram.com/tuautokoderer" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Visítanos</a></li>
+                        <li><a href="#"><i class="fas fa-question-circle"></i> Preguntas Frecuentes</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 KODERER AUTOS | Motos. Todos los derechos reservados. | Diseñado con <i class="fas fa-heart" style="color: var(--primary-color);"></i> para amantes de los vehículos</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Filter vehicles
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Update active button
+                document.querySelectorAll('.filter-btn').forEach(b => {
+                    b.classList.remove('active');
+                });
+                this.classList.add('active');
+
+                // Filter vehicles
+                const filter = this.dataset.filter;
+                document.querySelectorAll('.vehicle-card').forEach(vehicle => {
+                    if (filter === 'all' || 
+                        (filter === 'oportunidad' && vehicle.dataset.type === 'oportunidad') ||
+                        (filter === 'nuevo' && vehicle.dataset.type === 'nuevo')) {
+                        vehicle.style.display = 'block';
+                    } else {
+                        vehicle.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a, .btn').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
